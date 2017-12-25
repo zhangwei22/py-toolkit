@@ -1,0 +1,11 @@
+# Intellij project files
+*.iml
+.idea/
+
+# python complie
+__pycache__/
+
+# Others
+target/
+logs/
+.DS_Store
