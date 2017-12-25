@@ -5,12 +5,12 @@ import pprint
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
 
-from stock_prediction.train_data.data_model import *
-from stock_prediction.train_data.model_rnn import *
+from prediction_stock.data_model import StockDataSet
+from prediction_stock.model_rnn import LstmRNN
 
 flags = tf.app.flags
 flags.DEFINE_integer("stock_count", 100, "Stock count [100]")
-flags.DEFINE_integer("input_size", 1, "Input size [1]")#input data sample
+flags.DEFINE_integer("input_size", 1, "Input size [1]")  # input data sample
 flags.DEFINE_integer("num_steps", 30, "Num of steps [30]")
 flags.DEFINE_integer("num_layers", 1, "Num of layer [1]")
 flags.DEFINE_integer("lstm_size", 128, "Size of one LSTM cell [128]")
@@ -31,6 +31,7 @@ pp = pprint.PrettyPrinter()
 if not os.path.exists("logs"):
     os.mkdir("logs")
 
+
 def load_sp500(input_size, num_steps, k=None, target_symbol=None, test_ratio=0.05):
     if target_symbol is not None:
         return [
@@ -40,6 +41,7 @@ def load_sp500(input_size, num_steps, k=None, target_symbol=None, test_ratio=0.0
                 num_steps=num_steps,
                 test_ratio=test_ratio)
         ]
+
 
 def main(_):
     pp.pprint(FLAGS.__flags)
